@@ -5,18 +5,17 @@ CONFIG set allow.raw_sockets=1;
 
 RESTART
 
-ARG version=7
-ARG cluster_name=elasticsearch
-ARG node_name=node-1
-ARG host_ip=${JAIL_IP}
-
 # install required packages
-INCLUDE https://github.com/bastille-templates/openjdk/tree/v11
 INCLUDE https://github.com/bastille-templates/elasticsearch
 INCLUDE https://github.com/bastille-templates/logstash
 
 PKG kibana8
-# copy files
-# CP usr /
 
 # enable and start service
+SYSRC kibana_enable=YES
+
+SERVICE kibana start
+
+RDR tcp 80 80
+RDR tcp 5601 5601
+RDR tcp 9200 9200
