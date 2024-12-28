@@ -14,6 +14,7 @@ PKG kibana8
 # enable and start service
 SYSRC kibana_enable=YES
 
+SERVICE elasticsearch restart
 SERVICE kibana start
 
 RDR tcp 80 80
